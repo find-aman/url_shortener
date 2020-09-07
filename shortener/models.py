@@ -11,6 +11,7 @@ class Shortener(models.Model):
     shortcode = models.CharField(max_length=SHORTCODE_MAX, unique=True, blank=True)
     updated = models.DateField(auto_now=True)
     tmiestamp = models.DateField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.url)
