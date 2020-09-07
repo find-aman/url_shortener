@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from shortener.views import shortener_redirect_view
+from django.urls import path, include, re_path
+from shortener.views import ShortenerView, HomeView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("<str:shortcode>", shortener_redirect_view, name="shortener"),
+    path("admin/", admin.site.urls, name="admin"),
+    path("", HomeView.as_view(), name="home"),
+    path("<str:shortcode>/", ShortenerView.as_view(), name="shortener-view"),
 ]
