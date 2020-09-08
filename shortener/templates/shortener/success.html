@@ -1,0 +1,27 @@
+{% extends "shortener/base.html" %}
+{% block content %}
+<div>
+    <p class="lead">
+    <form>
+
+        <div class="input-group">
+            <input class="form-control form-control-lg" type="text" value="{{object.get_short_url}}" id="shorturl"
+                readonly>
+            <style>
+                input.form-control:read-only {
+                    background-color: #fff;
+                }
+            </style>
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" onclick="copyFunction()">Copy</button>
+            </div>
+        </div>
+
+        </p>
+        <p class="lead">
+            <a href="{% url 'home' %}" class="btn btn-lg btn-primary">New</a>
+
+    </form>
+    </p>
+</div>
+{% endblock content %}

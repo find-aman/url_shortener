@@ -20,3 +20,8 @@ class Shortener(models.Model):
         if self.shortcode is None or self.shortcode == "":
             self.shortcode = create_shortcode(self)
         super(Shortener, self).save(*args, **kwargs)
+
+    def get_short_url(self, *args, **kwargs):
+        url = getattr(settings, "WEEIT_URL")
+        shortcode = self.shortcode
+        return str(url + shortcode)

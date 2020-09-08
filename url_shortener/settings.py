@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "shortener",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,4 @@ STATIC_URL = "/static/"
 
 SHORTCODE_MAX = 15
 SHORTCODE_MIN = 6
+WEEIT_URL = "http://localhost:8000/"
