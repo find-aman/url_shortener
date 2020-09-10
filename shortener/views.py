@@ -3,6 +3,7 @@ from .models import Shortener
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .forms import SubmiUrlForm
+from django.contrib import messages
 
 
 class HomeView(View):
@@ -18,19 +19,23 @@ class HomeView(View):
 
         if form.is_valid():
             new_url = form.cleaned_data.get("url")
-            obj, created = Shortener.objects.get_or_create(url=new_url)
+            shortcode = form.cleaned_data.get("shortcode")
+            print(form.cleaned_data)
+            obj, created = Shortener.objects.get_or_create(
+                url=new_url, shortcode=shortcode
+            )
             context = {"object": obj, "created": created}
 
             if created:
                 template = "shortener/success.html"
             else:
                 template = "shortener/already_exists.html"
-
+        else:
+            messages.success(request, f"Not a Valid URL ending")
         return render(request, template, context)
 
 
 class ShortenerView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
-        # print(shortcode)
         obj = get_object_or_404(Shortener, shortcode=shortcode)
         return HttpResponseRedirect(obj.url)

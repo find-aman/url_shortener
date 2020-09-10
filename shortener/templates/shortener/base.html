@@ -11,34 +11,63 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <title>WeeIt | Shorten that URL</title>
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.5/examples/cover/cover.css" rel="stylesheet">
+    <style>
+        #particle {
+            background-color: #000000;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #overlay {
+            position: relative;
+        }
+
+        Html,
+        body {
+            height: 80%;
+        }
+
+        .grandParentContaniner {
+            display: table;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .parentContainer {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        input.form-control:read-only {
+            background-color: #fff;
+        }
+    </style>
 </head>
 
-<body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="masthead mb-auto">
-            <div class="inner">
-                <h3 class="masthead-brand text-primary">WeeIt</h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link text-primary" href="#">About</a>
-                </nav>
+<body>
+    <div id="particle"></div>
+    <div id="overlay">
+        <div style="text-align:center; width:100%;margin-left:auto;margin-top:7%;margin-right:auto;">
+            <h1 class="font-weight-bold font-italic text-primary">WeeIt</h1>
+            <br><br>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.info }} text-danger">
+                {{ message }}
             </div>
-        </header>
-
-        <main role="main" class="inner cover">
+            {% endfor %}
+            {% endif %}
             {% block content %}
             {% endblock content %}
-        </main>
 
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <!-- <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a
-                        href="https://twitter.com/mdo">@mdo</a>.</p> -->
-            </div>
-        </footer>
+        </div>
+
     </div>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -50,16 +79,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
     <script>
-        function copyFunction() {
-            /* Get the text field */
-            var copyText = document.getElementById("shorturl");
+        var options = { "particles": { "number": { "value": 99, "density": { "enable": true, "value_area": 552.4033491425909 } }, "color": { "value": "#00ffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 3 }, "image": { "src": "img/github.svg", "width": 70, "height": 100 } }, "opacity": { "value": 1, "random": true, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 5, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": false, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 1.5782952832645452, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": false };
+        particlesJS("particle", options);
+    </script>
+    <script>
+        function yesnoCheck() {
+            if (document.getElementById('yesCheck').checked) {
+                document.getElementById('ifYes').style.display = 'block';
+                document.getElementById('ifLabelYes').style.display = 'block';
+                document.getElementById('ifYes').required = true;
+            } else {
+                document.getElementById('ifYes').style.display = 'none';
+                document.getElementById('ifLabelYes').style.display = 'none';
+                document.getElementById('ifYes').required = false;
+            }
+        }
 
-            /* Select the text field */
+        function myFunction() {
+            var copyText = document.getElementById("copyField");
             copyText.select();
-            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-            /* Copy the text inside the text field */
             document.execCommand("copy");
         }
     </script>

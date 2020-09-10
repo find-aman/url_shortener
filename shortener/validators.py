@@ -24,3 +24,13 @@ def validate_url_endings(value):
             return value
 
     raise ValidationError("Not a valid URL ending")
+
+
+def validate_url_starting(value):
+    url_validator = URLValidator()
+
+    for url_starting in ["http://", "https://", "www."]:
+        if url_starting in value:
+            return value
+
+    raise ValidationError("Not a valid URL startnig")
