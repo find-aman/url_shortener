@@ -123,4 +123,4 @@ STATIC_URL = "/static/"
 
 SHORTCODE_MAX = 15
 SHORTCODE_MIN = 6
-WEEIT_URL = "http://localhost:8000/"
+WEEIT_URL = "https://weeit.herokuapp.com/"
