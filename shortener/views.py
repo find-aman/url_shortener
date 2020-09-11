@@ -20,18 +20,22 @@ class HomeView(View):
         if form.is_valid():
             new_url = form.cleaned_data.get("url")
             shortcode = form.cleaned_data.get("shortcode")
-            print(form.cleaned_data)
-            obj, created = Shortener.objects.get_or_create(
-                url=new_url, shortcode=shortcode
-            )
-            context = {"object": obj, "created": created}
-
-            if created:
-                template = "shortener/success.html"
+            # print(form.cleaned_data)
+            shortcode_model = Shortener.objects.filter(shortcode=shortcode).first()
+            if shortcode_model == None:
+                obj, created = Shortener.objects.get_or_create(
+                    url=new_url, shortcode=shortcode
+                )
+                context = {"object": obj, "created": created}
+                if created:
+                    template = "shortener/success.html"
+                else:
+                    template = "shortener/already_exists.html"
             else:
-                template = "shortener/already_exists.html"
+                template = "shortener/home.html"
+                messages.error(request, f"Shortcode already exists")
         else:
-            messages.success(request, f"Not a Valid URL ending")
+            messages.error(request, f"Not a Valid URL ending")
         return render(request, template, context)
 
 
