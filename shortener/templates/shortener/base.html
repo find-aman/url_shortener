@@ -14,7 +14,7 @@
     <style>
         #particle {
             background-color: #000000;
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
             bottom: 0;
@@ -26,23 +26,6 @@
             position: relative;
         }
 
-        Html,
-        body {
-            height: 80%;
-        }
-
-        .grandParentContaniner {
-            display: table;
-            height: 100%;
-            width: 40%;
-            margin: 0 auto;
-        }
-
-        .parentContainer {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
         input.form-control:read-only {
             background-color: #fff;
         }
@@ -52,7 +35,7 @@
 <body>
     <div id="particle"></div>
     <div id="overlay">
-        <div style="text-align:center;margin-top:10%;">
+        <div style="text-align:center; width: 50%; margin-left: auto; margin-top: 10%; margin-right: auto;">
             <h1 class="font-weight-bold font-italic text-primary">WeeIt</h1>
             <br><br>
             {% if messages %}
