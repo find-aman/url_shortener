@@ -6,18 +6,15 @@
 
         <form align="center" method="POST">
             {% csrf_token %}
-            <div class="form-group" style="width:100%;">
+            <div class="form-group">
                 {{form.url}}
+
             </div>
-            <div class="form-group" style="width:500px">
-                <!-- <input type="text" class="form-control form-control-lg" id="shortcode" aria-describedby="emailHelp"
-                    placeholder="Enter Custom Code "> -->
+            <div class="form-group">
                 {{form.shortcode}}
-                <label class="form-check-label text-white" id="ifLabelYes" style="display: none;">Custom code should be
-                    unique and
-                    between
-                    6 to 15
-                    characters</label>
+                <label class="form-check-label text-white" id="ifLabelYes" style="display: none;">
+                    Unique custom code 6-15 chars
+                </label>
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="yesCheck" onclick=yesnoCheck()>
