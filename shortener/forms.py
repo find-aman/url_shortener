@@ -11,7 +11,7 @@ class SubmiUrlForm(forms.Form):
             attrs={
                 "class": "form-control form-control-lg",
                 "type": "url",
-                "placeholder": "Enter Long URL",
+                "placeholder": "Enter Long URL including http:// or https://",
             }
         ),
     )

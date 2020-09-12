@@ -6,6 +6,11 @@ from .forms import SubmiUrlForm
 from django.contrib import messages
 
 
+def about(request):
+    context = {"about": True}
+    return render(request, "shortener/about.html", context=context)
+
+
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         form = SubmiUrlForm()

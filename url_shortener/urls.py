@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from shortener.views import ShortenerView, HomeView
+from shortener.views import ShortenerView, HomeView, about
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("", HomeView.as_view(), name="home"),
+    path("about/", about, name="about"),
     path("<str:shortcode>/", ShortenerView.as_view(), name="shortener-view"),
 ]
