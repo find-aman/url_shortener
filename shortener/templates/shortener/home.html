@@ -11,7 +11,12 @@
 
             </div>
             <div class="form-group">
+                {% if messages %}
+                <input type="text" class="form-control form-control-lg" , placeholder="Enter custom shortcode" ,
+                    name="shortcode" , id="ifYes" style="display : none;">
+                {% else %}
                 {{form.shortcode}}
+                {% endif %}
                 <label class="form-check-label text-white" id="ifLabelYes" style="display: none;">
                     Should be unique<br> 6-15 chars
                 </label>
